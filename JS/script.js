@@ -1,3 +1,35 @@
+/* Fonctions pour mettre à jour en temps réel les informations entrées par l'utilisateur */
+
+function displayInputs(inputTag, displayTag) {
+  document.getElementById(inputTag).addEventListener("input", (event) => {
+    document.getElementById(displayTag).textContent = event.target.value;
+  });
+}
+
+function displayCardNumberInput() {
+  document
+    .getElementById("cardholder_number")
+    .addEventListener("input", (event) => {
+      let target = event.target,
+        position = target.selectionEnd,
+        length = target.value.length;
+      event.target.value = event.target.value
+        .replace(/[^\d]/g, "")
+        .replace(/(.{4})/g, "$1 ")
+        .trim();
+      target.selectionEnd = position +=
+        target.value.charAt(position - 1) === " " &&
+        target.value.charAt(length - 1) === " " &&
+        length !== target.value.length
+          ? 1
+          : 0;
+      document.getElementById("card_number_display").textContent =
+        event.target.value;
+    });
+}
+
+/* Fonctions pour tester les regex */
+
 function checkInputEmpty(tag) {
   if (document.getElementById(tag).value == "") {
     return true;
@@ -5,10 +37,12 @@ function checkInputEmpty(tag) {
 }
 
 function testNumbers(regex, tag) {
-  if (regex.test(tag.value)) {
+  if (regex.test(tag.value.replace(/\s/g, ""))) {
     return true;
   }
 }
+
+/* Fonctions pour afficher les messages de vérification des entrées utilisateurs */
 
 function showInputEmpty(inputTag, messageTag) {
   document.getElementById(inputTag).style.border = "1px solid red";
@@ -66,4 +100,9 @@ function checkInputs() {
   });
 }
 
+displayInputs("cardholder_name", "name_display");
+displayCardNumberInput();
+displayInputs("exp_date_month", "display_month");
+displayInputs("exp_date_year", "display_year");
+displayInputs("cvc", "cvc_display");
 checkInputs();

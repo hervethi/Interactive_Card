@@ -34,6 +34,22 @@
     <header></header>
     <main>
       <div id="background"></div>
+      <div id="cards">
+        <div id="card_front">
+          <div id="card_number_display">0000 0000 0000 0000</div>
+          <div id="name_display">Jane Appleseed</div>
+          <div id="exp_date">
+            <div id="display_month">09</div>
+            /
+            <div id="display_year">00</div>
+          </div>
+          <img src="assets/images/bg-card-front.png" />
+        </div>
+        <div id="card_back">
+          <div id="cvc_display">000</div>
+          <img src="assets/images/bg-card-back.png" />
+        </div>
+      </div>
       <div id="form_container">
         <form id="informations">
           <label for="cardholder_name">CARDHOLDER NAME</label>
@@ -50,6 +66,7 @@
             name="cardholder_number"
             type="text"
             placeholder="e.g. 1234 5678 9123 0000"
+            maxlength="19"
           />
           <div id="error_number" class="error_message"></div>
           <div id="date_and_cvc">
@@ -75,7 +92,13 @@
             </div>
             <div id="cvc_number">
               <label for="cvc">CVC</label>
-              <input id="cvc" name="cvc" type="text" placeholder="e.g. 123" maxlength="3"/>
+              <input
+                id="cvc"
+                name="cvc"
+                type="text"
+                placeholder="e.g. 123"
+                maxlength="3"
+              />
               <div id="error_cvc" class="error_message"></div>
             </div>
           </div>
