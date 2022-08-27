@@ -63,21 +63,23 @@ function showValidateInput(inputTag, messageTag) {
 function checkCardholderNameInput() {
   if (checkInputEmpty("cardholder_name")) {
     showInputEmpty("cardholder_name", "error_name");
-    return;
+    return false;
   }
   showValidateInput("cardholder_name", "error_name");
+  return true;
 }
 
 function checkInputNumbers(regex, inputTag, messageTag) {
   if (checkInputEmpty(inputTag)) {
     showInputEmpty(inputTag, messageTag);
-    return;
+    return false;
   }
   if (!testNumbers(regex, document.getElementById(inputTag))) {
     showInputNumbers(inputTag, messageTag);
-    return;
+    return false;
   }
   showValidateInput(inputTag, messageTag);
+  return true;
 }
 
 function checkAllInputsNumber() {
@@ -89,6 +91,14 @@ function checkAllInputsNumber() {
   checkInputNumbers(regex_month, "exp_date_month", "error_date");
   checkInputNumbers(regex_year, "exp_date_year", "error_date");
   checkInputNumbers(regex_cvc, "cvc", "error_cvc");
+  if (
+    checkInputNumbers(regex_card_number, "cardholder_number", "error_number") &&
+    checkInputNumbers(regex_month, "exp_date_month", "error_date") &&
+    checkInputNumbers(regex_year, "exp_date_year", "error_date") &&
+    checkInputNumbers(regex_cvc, "cvc", "error_cvc")
+  ) {
+    return true;
+  }
 }
 
 function checkInputs() {
@@ -97,6 +107,21 @@ function checkInputs() {
     event.preventDefault();
     checkCardholderNameInput();
     checkAllInputsNumber();
+    console.log(checkCardholderNameInput());
+    console.log(checkAllInputsNumber());
+    if (checkCardholderNameInput() && checkAllInputsNumber()) {
+      document.getElementById("form_container").style.display = "none";
+      document.getElementById("success_display").style.display = "flex";
+    }
+  });
+}
+
+function newCard() {
+  document.getElementById("form_container").style.display = "flex";
+  document.getElementById("success_display").style.display = "none";
+  document.querySelectorAll("input").forEach((element) => {
+    element.value = "";
+    document.getElementById("submit_button").value = "Confirm";
   });
 }
 
