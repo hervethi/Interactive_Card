@@ -2,7 +2,9 @@
 
 function displayInputs(inputTag, displayTag) {
   document.getElementById(inputTag).addEventListener("input", (event) => {
-    document.getElementById(displayTag).textContent = event.target.value;
+    document.getElementById(displayTag).textContent = String(
+      event.target.value
+    ).toUpperCase();
   });
 }
 
@@ -107,8 +109,6 @@ function checkInputs() {
     event.preventDefault();
     checkCardholderNameInput();
     checkAllInputsNumber();
-    console.log(checkCardholderNameInput());
-    console.log(checkAllInputsNumber());
     if (checkCardholderNameInput() && checkAllInputsNumber()) {
       document.getElementById("form_container").style.display = "none";
       document.getElementById("success_display").style.display = "flex";
@@ -117,6 +117,12 @@ function checkInputs() {
 }
 
 function newCard() {
+  document.getElementById("name_display").textContent = "";
+  document.getElementById("card_number_display").textContent =
+    "0000 0000 0000 0000";
+  document.getElementById("display_month").textContent = "00";
+  document.getElementById("display_year").textContent = "00";
+  document.getElementById("cvc_display").textContent = "000";
   document.getElementById("form_container").style.display = "flex";
   document.getElementById("success_display").style.display = "none";
   document.querySelectorAll("input").forEach((element) => {
