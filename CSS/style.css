@@ -32,7 +32,7 @@ main {
 
 #cards {
   width: 500px;
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,10 +54,10 @@ position: relative;
 }
 
 #card_back {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-  }
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
 
 #cards img {
   /* width: 100%; */
@@ -104,7 +104,7 @@ position: relative;
 }
 
 #form_container {
-  width: 60%;
+  width: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,8 @@ input:focus {
   flex-direction: column;
 }
 
-#exp_date_month, #exp_date_year {
+#exp_date_month,
+#exp_date_year {
   width: 50%;
 }
 

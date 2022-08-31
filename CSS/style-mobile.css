@@ -60,6 +60,7 @@
   #form_container {
     width: 100%;
     margin-top: 40px;
+    margin-bottom: 20px;
   }
 
   #informations {
@@ -68,5 +69,11 @@
 
   #cvc {
     width: 100%;
+  }
+
+  #success_container {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 20px;
   }
 }
